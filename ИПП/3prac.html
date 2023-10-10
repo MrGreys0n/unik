@@ -1,0 +1,38 @@
+<!doctype html>
+<html>
+<meta charset="UTF-8">
+<head>
+<title>Каркас страницы с погодой</title>
+<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script> 
+<script>
+    var settings = {
+    "url": "https://api.openweathermap.org/data/2.5/weather?q=Dubai&units=metric&appid=d315c4f8b22500eeadbb258ac32139ca",
+    "method": "GET",
+    "timeout": 0,
+    };
+    $.ajax(settings).done(function(response, xhr) {
+    console.log("Return Code: " + xhr.status);
+    var content = response.main.temp;
+    var temp_min = response.main.temp_min;
+    var temp_max = response.main.temp_max;
+    var pressure = response.main.pressure;
+    var wind = response.wind.speed;
+    $("#Temp").append(content);
+    $("#Temp-min").append(temp_min);
+    $("#Temp-max").append(temp_max);
+    $("#Pressure").append(pressure);
+    $("#Wind").append(wind);
+    
+    });
+    </script>
+</head>
+<body>
+<h1>Страница с погодой</h1>
+temp: <span id="Temp"></span><br>
+temp-min: <span id="Temp-min"></span><br>
+temp-max: <span id="Temp-max"></span><br>
+pressure: <span id="Pressure"></span><br>
+wind: <span id="Wind"></span><br>
+</body>
+</html>
